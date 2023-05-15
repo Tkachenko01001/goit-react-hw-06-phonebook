@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { remove } from "Redux/Slices/Slices";
 import ContactsListElement from "../Contact-list-element/Contacts-list-element";
 import { Button } from "../../styled/style.styled";
-import PropTypes from "prop-types";
 
-const ContactsList = ({filteredContacts}) => {
+const ContactsList = () => {
 
+    const contacts = useSelector((state) => state.contacts);
+    const filter = useSelector((state) => state.filter);
     const dispatch = useDispatch();
+    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
 
     return (
         <ul>
@@ -21,14 +23,6 @@ const ContactsList = ({filteredContacts}) => {
       ))}
       </ul>
     )
-}
-
-ContactsList.propTypes = {
-  filteredContacts: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired
-  })).isRequired,
 }
 
 export default ContactsList;
