@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Form, Button, Label, Input } from "../../styled/style.styled";
 
 const ContactForm = ({handleSubmit}) => {
@@ -29,6 +30,10 @@ const ContactForm = ({handleSubmit}) => {
         <Button>Add contact</Button>
       </Form>
     )
+}
+
+ContactForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default ContactForm;
